@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Corner - 專屬我們的空間</title>
+    <style>
+        /* 基礎設定 */
+        body {
+            font-family: "Microsoft JhengHei", "Microsoft YaHei", "STHeiti", Arial, sans-serif;     /* 關鍵：設定繁簡通用的現代無襯線字體 */
+  	    margin: 0;
+            padding: 0;
+            background-color: #faf5f5; /* 溫暖的微粉底色 */
+            color: #4a4a4a;
+            scroll-behavior: smooth; /* 讓網頁滾動時有平滑效果 */
+        }
+
+        /* 1. 固定導覽列 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #8b5a6c; /* 優雅的玫瑰豆沙色 */
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #d49a9a;
+        }
+
+        /* 區塊通用樣式 */
+        section {
+            padding: 100px 20px 60px 20px; /* 留出上方導覽列的空間 */
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h2 {
+            color: #8b5a6c;
+            border-bottom: 2px solid #e8d3d3;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* 2. 想說的話（點擊展開樣式） */
+        details {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        summary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8b5a6c;
+            outline: none;
+        }
+        details[open] summary {
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e8d3d3;
+            padding-bottom: 5px;
+        }
+
+        /* 3. 食譜卡片排版 */
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .recipe-card {
+            background: white;
+            width: 45%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-decoration: none; /* 移除超連結下底線 */
+            color: inherit;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px); /* 懸浮往上漂移效果 */
+        }
+        .recipe-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* 讓圖片填滿不變形 */
+        }
+        .recipe-card h3 {
+            margin: 15px 0;
+            color: #4a4a4a;
+        }
+
+	/* 4. 未來規劃（已改為上下排列） */
+        .plan-container {
+            display: flex;
+            flex-direction: column; /* 關鍵魔法：讓內容由上到下垂直排列 */
+            gap: 25px; /* 格子跟格子之間的上下間距 */
+        }
+        
+        .plan-box {
+            background: #fff0f2;
+            width: 100%; /* 寬度撐滿，變成橫條狀 */
+            padding: 25px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #d49a9a; /* 左邊保留精緻的粉色裝飾線 */
+            text-align: left; /* 內容靠左，閱讀起來更像時間軸/計畫表 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            box-sizing: border-box; /* 防止寬度爆出去 */
+            transition: transform 0.2s;
+        }
+
+        /* 滑鼠移過去時稍微放大，增加互動感 */
+        .plan-box:hover {
+            transform: scale(1.02);
+        }
+
+        /* 音樂播放器固定在右下角 */
+        .bg-music {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+	/* 旅行六大板塊的網格排版 */
+        .travel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* 自動依螢幕大小排成兩排或三排 */
+            gap: 20px; /* 卡片之間的間距 */
+            margin-top: 30px;
+        }
+
+        /* 單張旅行卡片樣式 */
+        .travel-card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: left; /* 內容靠左比較好閱讀清單 */
+            transition: all 0.3s ease;
+            border-top: 4px solid #d49a9a; /* 卡片上方有一條粉色裝飾線 */
+        }
+
+        .travel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        /* 卡片小圖示 */
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .travel-card h3 {
+            margin: 0 0 15px 0;
+            color: #8b5a6c;
+            font-size: 1.2rem;
+        }
+
+        .travel-card ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .travel-card li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* Excel 按鈕樣式 */
+        .excel-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #1f7246; /* Excel 的經典綠色 */
+            color: white !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            text-align: center;
+            width: 85%;
+        }
+        .excel-btn:hover {
+            background-color: #13482c;
+        }
+	/* 魔法：讓預計行程卡片強行橫跨一整排 */
+        .full-width-card {
+            grid-column: 1 / -1; /* 從最左邊跨到最右邊 */
+            border-top: none;
+            border-left: 5px solid #d49a9a; /* 改成左邊粗線，看起來更像精緻的備忘錄 */
+        }
+
+        /* 行程內部的文字稍微優化 */
+        .timeline-inline p {
+            margin: 5px 0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+	/* 繁簡切換浮動按鈕樣式 */
+        #translate-btn {
+            position: fixed;
+            bottom: 90px; /* 固定在右下角，放在音樂播放器（bottom: 20px）的上方 */
+            right: 25px;
+            background-color: #8b5a6c; /* 使用跟網頁一致的優雅玫瑰色 */
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 1001; /* 確保不會被卡片遮擋 */
+            transition: all 0.2s ease;
+        }
+
+        #translate-btn:hover {
+            background-color: #a06e78;
+            transform: scale(1.05); /* 滑鼠移上去稍微變大 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 導覽列 -->
+    <nav>
+        <a href="#words">想說的話</a>
+        <a href="#recipes">美味食譜</a>
+        <a href="#plans">我的未來規劃</a>
+        <a href="#travel">旅行計畫</a>
+    </nav>
+
+    <!-- 2. 想說的話 區塊 -->
+    <section id="words">
+        <h2>💌 想說的話</h2>
+        <p>一點驚喜</p>
+        
+        <details>
+            <summary>✨ 點擊展開：給特別的妳</summary>
+            <p> paragraph </p>
+            <p> </p>
+        </details>
+    </section>
+
+    <!-- 3. 食譜 區塊 -->
+<!-- 3. 食譜 區塊（已調整為正餐與點心兩大板塊） -->
+    <section id="recipes">
+        <h2>🍳 我們的食譜</h2>
+        
+        <!-- 次級板塊：正餐 -->
+        <h3 class="recipe-sub-title">🍽️ 正餐</h3>
+        <div class="card-container">
+            <!-- 正餐卡片 1 -->
+            <a href="recipe-dinner1.html" class="recipe-card">
+                <img src="food1.jpg" alt="土豆泥">
+                <h3>土豆泥</h3>
+            </a>
+            <!-- 正餐卡片 2 -->
+            <a href="recipe-dinner2.html" class="recipe-card">
+                <img src="food2.jpg" alt="蔥薑雞">
+                <h3>蔥薑雞</h3>
+            </a>
+	    <!-- 正餐卡片 3 -->
+            <a href="recipe-dinner3.html" class="recipe-card">
+                <img src="food3.jpg" alt="皮蛋瘦肉粥">
+                <h3>皮蛋瘦肉粥</h3>
+            </a>
+	    <!-- 正餐卡片 4 -->
+            <a href="recipe-dinner4.html" class="recipe-card">
+                <img src="food4.jpg" alt="爆量起司瑪格莉特比薩">
+                <h3>爆量起司瑪格莉特比薩</h3>
+            </a>
+	    <!-- 正餐卡片 45 -->
+            <a href="recipe-dinner5.html" class="recipe-card">
+                <img src="food5.jpg" alt="薄荷麵">
+                <h3>薄荷麵</h3>
+            </a>
+        </div>
+
+        <!-- 次級板塊：點心 -->
+        <h3 class="recipe-sub-title">🍰 點心時光</h3>
+        <div class="card-container">
+            <!-- 點心卡片 1 -->
+            <a href="recipe-dessert1.html" class="recipe-card">
+                <img src="food6.jpg" alt="原味巴斯克蛋糕">
+                <h3>原味巴斯克蛋糕 🍰</h3>
+            </a>
+            <!-- 點心卡片 2 -->
+            <a href="recipe-dessert2.html" class="recipe-card">
+                <img src="food7.jpg" alt="雙皮奶">
+                <h3>雙皮奶 🍮</h3>
+            </a>
+            <!-- 點心卡片 3 -->
+            <a href="recipe-dessert3.html" class="recipe-card">
+                <img src="food8.jpg" alt="榛果巧克力小麵包">
+                <h3>榛果巧克力小麵包 🍮</h3>
+            </a>
+            <!-- 點心卡片 4 -->
+            <a href="recipe-dessert4.html" class="recipe-card">
+                <img src="food9.jpg" alt="鬆餅">
+                <h3>鬆餅 🍮</h3>
+            </a>
+            <!-- 點心卡片 5 -->
+            <a href="recipe-dessert5.html" class="recipe-card">
+                <img src="food10.jpg" alt="純巧克力甜筒">
+                <h3>純巧克力甜筒</h3>
+            </a>
+            <!-- 點心卡片 6 -->
+            <a href="recipe-dessert6.html" class="recipe-card">
+                <img src="food11.jpg" alt="優格Gelato">
+                <h3>優格Gelato</h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- 4. 未來藍圖 區塊 -->
+    <section id="plans">
+        <h2>📅 未來規劃藍圖</h2>
+        <div class="plan-container">
+            <div class="plan-box">
+                <h3>短期規劃	~今年~ </h3>
+                <p>完成碩士學位<br>找工作</p>
+            </div>
+            <div class="plan-box">
+                <h3>中期規劃	~一到三年~ </h3>
+                <p>生活穩定的目標...<br>共同存旅遊基金</p>
+            </div>
+            <div class="plan-box">
+                <h3>長期規劃	~五年~ </h3>
+                <p>執子之手...<br>打造屬於我們的家</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 第一次見面 區塊 -->
+<section id="travel">
+        <h2>✈️ 啟程：初見面</h2>
+        <p>為妳量身打造的專屬旅行地圖，點點看每一項規劃吧！</p>
+        
+        <div class="travel-grid">
+            
+            <div class="travel-card">
+                <div class="card-icon">📍</div>
+                <h3>想去景點</h3>
+                <ul>
+                    <li>五大道（初次約會地？）</li>
+                    <li>天津之眼 + 海河河岸漫步</li>
+                    <li>校園漫步</li>
+                </ul>
+            </div>
+
+            <div class="travel-card">
+                <div class="card-icon">🍕</div>
+                <h3>在地美食</h3>
+                <ul>
+                    <li>主餐：</li>
+                    <li>點心：</li>
+                </ul>
+            </div>
+
+            <div class="travel-card">
+                <div class="card-icon">🏨</div>
+                <h3>住宿</h3>
+                <p><strong>預計入住：</strong> 西北角酒店 </p>
+                <p style="font-size: 0.9rem; color: #888;">（靠近車站、回民街！）</p>
+            </div>
+
+            <div class="travel-card">
+                <div class="card-icon">🚄</div>
+                <h3>交通細節</h3>
+                <p><strong>去程：</strong> XX航空 XXXXX班次 (預計 09:00 ~ )</p>
+                <p><strong>去程：</strong> 高鐵 XXX 車次 (預計 09:00 ~ )</p>
+                <p><strong>當地：</strong> 大眾運輸、叫車 </p>
+            </div>
+
+            <div class="travel-card budget-card">
+                <div class="card-icon">💰</div>
+                <h3>預算規劃</h3>
+                <p>估計總花費：$XXX NTD</p>
+                <a href="https://你的雲端Excel連結" target="_blank" class="excel-btn">📊 查看詳細預算 Excel</a>
+                
+                </div>
+	    <div class="travel-card full-width-card">
+                <div class="card-icon">📝</div>
+                <h3>預計行程</h3>
+                <div class="timeline-inline">
+                    <p><strong>Day 1：</strong> 出發 → 抵達北京 → 見面啦~ → 飯店入住 → 用餐 </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
+                       <strong>Day 2：</strong>  →  →  →  →
+                    </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
+                       <strong>Day 3：</strong>  →  →  →  →
+                    </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
+                       <strong>Day 4：</strong>  →  →  →  →
+                    </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
+                       <strong>Day 5：</strong>  →  →  →  →
+                    </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
+                       <strong>Day 6：</strong>  →  →  →  →
+                    </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
+                       <strong>Day 7：</strong> →  → 飯店退房 →  → 返程
+                    </p>
+                </div>
+            </div>
+	 </div>
+         </section>
+    </section>
+
+    <!-- 背景音樂播放器（固定在右下角） -->
+    <div class="bg-music">
+	<audio id="my-bg-music" src="music.mp3" controls autoplay loop></audio>
+    </div>
+
+<button id="translate-btn" onclick="toggleLanguage()">简体</button>
+
+    <script>
+        // 一個超簡單但實用的核心字級繁簡轉換器
+        const transformMap = {
+            '繁': '繁', '簡': '简', '體': '体', '網': '网', '頁': '页', '相': '相', 
+            '片': '片', '音': '音', '樂': '乐', '食': '食', '譜': '谱', '未': '未', 
+            '來': '来', '規': '规', '劃': '划', '旅': '旅', '遊': '游', '景': '景', 
+            '點': '点', '美': '美', '住': '住', '宿': '宿', '交': '交', '通': '通', 
+            '預': '预', '算': '算', '程': '程', '點': '点', '擊': '击', '連': '连', 
+            '結': '结', '個': '个', '板': '板', '塊': '块', '幸': '幸', '福': '福', 
+            '推': '推', '薦': '荐', '義': '义', '大': '大', '利': '利',
+            '時': '时', '光': '光', '微': '微', '甜': '甜', '心': '心', '蛋': '蛋', 
+            '糕': '糕', '法': '法', '式': '式', '焦': '焦', '糖': '糖', '烤': '烤', 
+            '布': '布', '蕾': '蕾', '為': '为', '妳': '妳', '量': '量', '身': '身', 
+            '打': '打', '造': '造', '專': '专', '屬': '属', '圖': '图', '每': '每', 
+            '項': '项', '吧': '吧', '熱門': '热门', '區': '区', '欄': '栏', '排': '排', 
+            '列': '列', '顯': '显', '示': '示', '返': '返', '回': '回', '首': '首'
+        };
+
+        // 建立雙向對照
+        const tc2sc = transformMap;
+        const sc2tc = {};
+        for (let key in transformMap) { sc2tc[transformMap[key]] = key; }
+
+        let currentLang = localStorage.getItem('lang') || 'zh-TW';
+
+        // 網頁載入時檢查狀態
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentLang === 'zh-CN') {
+                runTranslate(tc2sc);
+                document.getElementById('translate-btn').innerText = '繁體';
+            }
+        });
+
+        function toggleLanguage() {
+            const btn = document.getElementById('translate-btn');
+            if (currentLang === 'zh-TW') {
+                runTranslate(tc2sc);
+                btn.innerText = '繁體';
+                currentLang = 'zh-CN';
+            } else {
+                runTranslate(sc2tc);
+                btn.innerText = '简体';
+                currentLang = 'zh-TW';
+            }
+            localStorage.setItem('lang', currentLang);
+        }
+
+        // 遍歷網頁中所有的文字進行替換
+        function runTranslate(map) {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while (node = walker.nextNode()) {
+                // 排除按鈕本身的文字，不讓它自己打架
+                if (node.parentElement.id === 'translate-btn') continue;
+                
+                let text = node.nodeValue;
+                let newText = '';
+                for (let i = 0; i < text.length; i++) {
+                    let char = text.charAt(i);
+                    newText += map[char] || char; // 如果有對應字就換，沒有就保留原字
+                }
+                node.nodeValue = newText;
+            }
+        }
+    </script>
+    <script>
+        // 隱形啟動音樂的魔法
+        function autoPlayMusic() {
+            const audio = document.getElementById('my-bg-music');
+            if (audio) {
+                // 嘗試播放音樂
+                audio.play().then(() => {
+                    // 如果播放成功，就把這個點擊監聽器拆掉，不影響後續點擊
+                    document.removeEventListener('click', autoPlayMusic);
+                    document.removeEventListener('touchend', autoPlayMusic);
+                }).catch((error) => {
+                    console.log("瀏覽器還在阻擋自動播放，等待下一次點擊...");
+                });
+            }
+        }
+
+        // 監聽：只要女友在網頁上「點一下滑鼠(click)」或手機「觸控螢幕放開(touchend)」
+        document.addEventListener('click', autoPlayMusic);
+        document.addEventListener('touchend', autoPlayMusic);
+    </script>
+</body>
+</html>

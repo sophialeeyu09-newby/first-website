@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>榛果巧克力小麵包</title>
+    
+    <style>
+        /* 讓網頁點擊目錄跳轉時有平滑滾動的效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Microsoft YaHei", "STHeiti", Arial, sans-serif;
+            background-color: #faf5f5;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        /* 總容器：設定為 900px 以便容納左右雙欄 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* 返回首頁按鈕樣式 */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #8b5a6c;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .back-btn:hover {
+            color: #a06e78;
+        }
+
+        h1 {
+            color: #8b5a6c;
+            border-bottom: 2px solid #e8d3d3;
+            padding-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        /* 雙欄左右排版總佈局 */
+        .recipe-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        /* 👈 左側固定索引欄外框 */
+        .recipe-sidebar {
+            width: 180px;
+            flex-shrink: 0; /* 防止被右邊內容擠扁 */
+        }
+
+        /* 核心黏性滾動魔法 */
+        .sticky-menu {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 40px; /* 捲動到距離視窗上方 40px 時會自動卡住固定 */
+            background-color: #fffafb;
+            padding: 15px;
+            border-radius: 8px;
+            border-right: 2px solid #e8d3d3;
+        }
+
+        .menu-title {
+            font-weight: bold;
+            color: #8b5a6c;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border-bottom: 1px solid #e8d3d3;
+            padding-bottom: 5px;
+        }
+
+        /* 側邊欄超連結樣式 */
+        .sticky-menu a {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+        .sticky-menu a:hover {
+            color: #8b5a6c;
+            padding-left: 5px; /* 滑鼠移上去時往右稍微彈跳 */
+            font-weight: bold;
+        }
+
+        /* 👉 右側主要內容區 */
+        .recipe-main-content {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        /* 食譜大圖樣式 */
+        .recipe-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* 各大區塊標題樣式 */
+        .section-title {
+            color: #a06e78;
+            border-left: 4px solid #a06e78;
+            padding-left: 10px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* 📝 料理反饋與心得總外框 */
+        .feedback-box {
+            background-color: #fffafb;
+            border: 1px dashed #e8d3d3;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .feedback-item {
+            margin-bottom: 15px;
+        }
+        .feedback-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feedback-label {
+            font-weight: bold;
+            color: #8b5a6c;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .feedback-value {
+            color: #555;
+        }
+
+        .feedback-text {
+            margin: 0;
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #a06e78;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .feedback-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* 🔠 繁簡切換浮動按鈕樣式 */
+        #translate-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #8b5a6c;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 1001;
+            transition: all 0.2s ease;
+        }
+        #translate-btn:hover {
+            background-color: #a06e78;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">⬅️ 返回首頁</a>
+
+        <h1>榛果巧克力小麵包</h1>
+        <p style="color: #888; font-style: italic;">「鮮甜的大干貝搭配濃郁的醬汁，這是屬於我們的紀念日大餐。」</p>
+
+        <div class="recipe-layout">
+            
+            <aside class="recipe-sidebar">
+                <div class="sticky-menu">
+                    <p class="menu-title">🍳 快速索引</p>
+                    <a href="#section-ingredients">🛒 準備食材</a>
+                    <a href="#section-steps">👩‍🍳 料理步驟</a>
+                    <a href="#section-feedback">📝 料理反饋</a>
+                </div>
+            </aside>
+
+            <main class="recipe-main-content">
+                
+                <img src="food8.jpg" alt="榛果巧克力小麵包" class="recipe-img">
+
+                <h3 class="section-title" id="section-ingredients">🛒 準備食材</h3>
+                <ul>
+                    <li>生食級大干貝 —— 4 顆</li>
+                    <li>義大利麵條 —— 200g</li>
+                    <li>蒜頭 —— 3 瓣（切碎）</li>
+                    <li>乾辣椒 —— 適量</li>
+                    <li>初榨橄欖油 —— 2 大匙</li>
+                </ul>
+
+                <h3 class="section-title" id="section-steps">👩‍🍳 料理步驟</h3>
+                <ol>
+                    <li>滾水加入一小匙鹽，放入義大利麵煮約 8 分鐘至八分熟後撈出備用。</li>
+                    <li>干貝用紙巾徹底擦乾，表面撒上少許鹽巴與黑胡椒。</li>
+                    <li>熱鍋下橄欖油，大火將干貝兩面各煎 1 分鐘至表面金黃，撈出備用。</li>
+                    <li>轉小火，利用原鍋的香氣炒香蒜末與乾辣椒。</li>
+                    <li>加入煮好的麵條與一杓麵湯，大火收汁，最後放回干貝拌勻即可上桌！</li>
+                </ol>
+
+                <h3 class="section-title" id="section-feedback">📝 料理反饋與心得</h3>
+                <div class="feedback-box">
+                    <div class="feedback-item">
+                        <span class="feedback-label">📅 製作日期：</span>
+                        <span class="feedback-value">2026 年 05 月 26 日</span>
+                    </div>
+                    
+                    <div class="feedback-item">
+                        <span class="feedback-label">🥰 口味心得：</span>
+                        <p class="feedback-text">
+                            干貝表面煎得非常酥脆，裡面還保持著嫩度，鮮甜味十足！
+                            麵條有吸飽蒜香和干貝的精華，微微的辣度非常開胃。小貓說給這道菜打 95 分！
+                        </p>
+                    </div>
+
+                    <div class="feedback-item">
+                        <span class="feedback-label">🛠️ 改進方式：</span>
+                        <ul class="feedback-list">
+                            <li>干貝下鍋前一定要確保表面完全擦乾，否則會變成用「燜」的，煎不出漂亮的金黃酥皮。</li>
+                            <li>下次起鍋前可以刨一點點檸檬皮屑，整體風味會變得更清新、不膩口。</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </main>
+
+        </div> </div>
+
+    <button id="translate-btn" onclick="toggleLanguage()">简体</button>
+
+    <script>
+        const traditional = "繁體網頁照片音樂食譜未來規劃旅遊景點美食住宿交通預算程點擊連結個板塊幸福推薦義大利麵時光微甜心蛋糕法式焦糖烤布蕾為妳量身打造專屬圖每項吧熱門區欄排列顯示返回首頁歡迎戀愛愛妳浪漫驚喜美味細心陪伴準備食材料理步驟料理反饋心得製作日期口味改進方式快速索引";
+        const simplified  = "繁体网页照片音乐食谱未来规划旅游景点美食住宿交通预算程点击链接个板块幸福推荐义大利面时光微甜心蛋糕法式焦糖烤布蕾为妳量身打造专属图每项吧热门区栏排列显示返回首页欢迎恋爱爱妳浪漫惊喜美味细心陪伴准备食材料理步骤料理反馈心得制作日期口味改进方式快速索引";
+
+        let currentLang = localStorage.getItem('lang') || 'zh-TW';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentLang === 'zh-CN') {
+                runTranslate(traditional, simplified);
+                document.getElementById('translate-btn').innerText = '繁體';
+            }
+        });
+
+        function toggleLanguage() {
+            const btn = document.getElementById('translate-btn');
+            if (currentLang === 'zh-TW') {
+                runTranslate(traditional, simplified);
+                btn.innerText = '繁體';
+                currentLang = 'zh-CN';
+            } else {
+                runTranslate(simplified, traditional);
+                btn.innerText = '简体';
+                currentLang = 'zh-TW';
+            }
+            localStorage.setItem('lang', currentLang);
+        }
+
+        function runTranslate(fromStr, toStr) {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.parentElement.id === 'translate-btn') continue;
+                let text = node.nodeValue;
+                let newText = '';
+                for (let i = 0; i < text.length; i++) {
+                    let char = text.charAt(i);
+                    let index = fromStr.indexOf(char);
+                    newText += (index !== -1) ? toStr.charAt(index) : char;
+                }
+                node.nodeValue = newText;
+            }
+        }
+    </script>
+
+</body>
+</html>
