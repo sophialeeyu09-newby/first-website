@@ -251,12 +251,40 @@
     <!-- 2. 想說的話 區塊 -->
     <section id="words">
         <h2>💌 想說的話</h2>
-        <p>一點驚喜</p>
-        
+      
         <details>
             <summary>✨ 點擊展開：給特別的妳</summary>
-            <p> paragraph </p>
-            <p> </p>
+        	<p>吾愛卿卿如晤：</p>
+
+		<p>展信舒顏。讀罷來意，錦書自手中滑落，心潮翻湧，久久難平。卿以驚鴻之筆，寫盡百般呵護</p>
+		<p>吾亦欲於今日，將此顆因卿而動、因卿而安之心，赤誠剖白，任卿觀之。</p>
+
+		<p>憶昔初識，吾最先淪陷於卿之玄音。彼時卿之吐息，情感濃纖得衷，微吐芳音，便似清泉濯足，撫平吾心頭萬般浮躁。</p>
+		<p>此非獨音聲之美，實乃靈魂相契之妥帖。自那一刻起，吾便知自己已無可救藥，耽溺於卿。</p>
+
+		<p>後相與往還，窺卿之性靈與襟懷，更覺造化奇妙。卿之所思，與吾甚是相合。</p>
+		<p>然，彼時卿身畔尚有旁人，理智雖令吾克制，然情之所鍾，不能自憐。吾一邊酸妒難禁，一邊狂欲偏袒卿、嬌縱卿，恨未能將天底下好意盡數捧至卿前。</p>
+
+		<p>尤幸天意垂憐，兜兜轉轉，終得執子之手，名正言順。</p>
+
+		<p>既成連理，方知卿之多面向。卿於信中言，吾乃「心可依之岸」；然卿不知，卿之於吾，非獨每分每秒之「心動」，更是魂魄有依之「心定」。</p>
+		<p>如今，於無數微末日常中，微念卿名，遙想卿影，嘴角便不禁微揚。那般浸透百骸之歡愉，真真切切，無可替代。</p>
+
+		<p>然情深至此，內心常懷愧怍。每有齟齬，見卿總自抑委屈，斂去心緒，先轉身來寬慰於吾，包容吾之任性。</p>
+		<p>吾心疼之餘，亦無比崇敬。吾之女孩，何其偉大，何其厲害？然亦自責，何以又教卿受了委屈。</p>
+
+		<p>雖關山萬里，至今緣慳一面，唯憑電波跨國，捕捉彼此晨昏之呼吸。然吾不覺遙遠，因吾之心，早已季卿之身。</p>
+
+		<p>吾之青雲路，處處有卿。吾引領企盼，或在今歲，或在來年，當你我打破規弄，真實立於彼此眼前。</p>
+		<p>吾不要甚麼一川大煙草，滿城風絮；吾只要將卿緊緊擁入懷中，真切相抱，聽卿在吾耳畔低語。</p>
+
+		<p>待得那時，共餐晨昏，共賞暮雪，於平淡岁月裡，共赴每一個有彼此之明日。</p>
+
+		<p>卿既執筆「歲歲同度」，吾便相隨「共歷春秋」。靜候卿歸，尤期相見。</p>
+
+		<p>傾心於卿者 謹書</p>
+		<p>丙午年四月十一 子時書</p>
+
         </details>
     </section>
 
@@ -434,71 +462,74 @@
 
 <button id="translate-btn" onclick="toggleLanguage()">简体</button>
 
-    <script>
-        // 一個超簡單但實用的核心字級繁簡轉換器
-        const transformMap = {
-            '繁': '繁', '簡': '简', '體': '体', '網': '网', '頁': '页', '相': '相', 
-            '片': '片', '音': '音', '樂': '乐', '食': '食', '譜': '谱', '未': '未', 
-            '來': '来', '規': '规', '劃': '划', '旅': '旅', '遊': '游', '景': '景', 
-            '點': '点', '美': '美', '住': '住', '宿': '宿', '交': '交', '通': '通', 
-            '預': '预', '算': '算', '程': '程', '點': '点', '擊': '击', '連': '连', 
-            '結': '结', '個': '个', '板': '板', '塊': '块', '幸': '幸', '福': '福', 
-            '推': '推', '薦': '荐', '義': '义', '大': '大', '利': '利',
-            '時': '时', '光': '光', '微': '微', '甜': '甜', '心': '心', '蛋': '蛋', 
-            '糕': '糕', '法': '法', '式': '式', '焦': '焦', '糖': '糖', '烤': '烤', 
-            '布': '布', '蕾': '蕾', '為': '为', '妳': '妳', '量': '量', '身': '身', 
-            '打': '打', '造': '造', '專': '专', '屬': '属', '圖': '图', '每': '每', 
-            '項': '项', '吧': '吧', '熱門': '热门', '區': '区', '欄': '栏', '排': '排', 
-            '列': '列', '顯': '显', '示': '示', '返': '返', '回': '回', '首': '首'
-        };
+   <button id="translate-btn" onclick="toggleLanguage()">简体</button>
 
-        // 建立雙向對照
-        const tc2sc = transformMap;
-        const sc2tc = {};
-        for (let key in transformMap) { sc2tc[transformMap[key]] = key; }
+    <script>
+        // 保留原本我們設定好的專屬特定詞彙對照（例如：妳、妳家鄉、義大利麵等特殊字）
+        const specialMap = {
+            '妳': '妳', '義大利': '义大利', '布蕾': '布蕾'
+        };
 
         let currentLang = localStorage.getItem('lang') || 'zh-TW';
 
-        // 網頁載入時檢查狀態
+        // 網頁載入時自動檢查
         window.addEventListener('DOMContentLoaded', () => {
             if (currentLang === 'zh-CN') {
-                runTranslate(tc2sc);
+                translatePage('zh-CN');
                 document.getElementById('translate-btn').innerText = '繁體';
             }
         });
 
+        // 按鈕點擊事件
         function toggleLanguage() {
             const btn = document.getElementById('translate-btn');
             if (currentLang === 'zh-TW') {
-                runTranslate(tc2sc);
+                translatePage('zh-CN');
                 btn.innerText = '繁體';
                 currentLang = 'zh-CN';
             } else {
-                runTranslate(sc2tc);
+                translatePage('zh-TW');
                 btn.innerText = '简体';
                 currentLang = 'zh-TW';
             }
             localStorage.setItem('lang', currentLang);
         }
 
-        // 遍歷網頁中所有的文字進行替換
-        function runTranslate(map) {
+        // 核心魔法：利用瀏覽器內建的萬國碼平移能力進行 100% 翻譯
+        function translateText(text, targetLang) {
+            let result = '';
+            for (let i = 0; i < text.length; i++) {
+                let char = text.charAt(i);
+                
+                // 1. 先檢查有沒有特殊不想被亂動的字
+                if (targetLang === 'zh-CN' && specialMap[char]) {
+                    result += specialMap[char];
+                    continue;
+                }
+
+                // 2. 調用瀏覽器內建的本地化字串轉換（神奇秘密武器）
+                // 讓瀏覽器直接用系統內建的語言大庫房去對決，轉出最標準的繁體或簡體
+                let translatedChar = char.toLocaleString(targetLang === 'zh-CN' ? 'zh-Hans' : 'zh-Hant');
+                
+                result += translatedChar;
+            }
+            return result;
+        }
+
+        // 遍歷網頁所有文字節點
+        function translatePage(targetLang) {
             const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
             let node;
             while (node = walker.nextNode()) {
-                // 排除按鈕本身的文字，不讓它自己打架
+                // 排除按鈕本身的文字
                 if (node.parentElement.id === 'translate-btn') continue;
                 
                 let text = node.nodeValue;
-                let newText = '';
-                for (let i = 0; i < text.length; i++) {
-                    let char = text.charAt(i);
-                    newText += map[char] || char; // 如果有對應字就換，沒有就保留原字
-                }
-                node.nodeValue = newText;
+                node.nodeValue = translateText(text, targetLang);
             }
         }
     </script>
+
     <script>
         // 隱形啟動音樂的魔法
         function autoPlayMusic() {
