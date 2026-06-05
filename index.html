@@ -254,10 +254,15 @@
         .excel-btn:hover {
             background-color: #13482c;
         }
+	/* 魔法：讓預計行程卡片強行橫跨一整排 */
         .full-width-card {
-            grid-column: 1 / -1;
+            grid-column: 1 / -1; /* 從最左邊跨到最右邊 */
             border-top: none;
-            border-left: 5px solid #d49a9a;
+            border-left: 5px solid #d49a9a; /* 改成左邊粗線 */
+            
+            /* 🌟 補上這兩行，強迫每張大卡片下方都有舒適的 25 像素呼吸空間 */
+            margin-bottom: 25px !important; 
+            display: block !important;
         }
         .timeline-inline p {
             margin: 5px 0;
@@ -352,11 +357,13 @@
         <a href="#travel">旅行計畫</a>
     </nav>
 
+  <!-- 2. 想說的話 區塊（雙信封浪漫升級版） -->
     <section id="words">
         <h2>💌 想說的話</h2>
         
+        <!-- ✉️ 第一封信：原本的情書與語音信箱 -->
         <details>
-            <summary>✨ 點擊展開：給特別的妳</summary>
+            <summary>✨給特別的妳</summary>
             
             <p>吾愛卿卿如晤：</p>
             <p>展信舒顏。讀罷來意，錦書自手中滑落，心潮翻湧，久久難平。卿以驚鴻之筆寫盡百般呵護</p>
@@ -398,10 +405,34 @@
                 </div>
             </div>
         </details>
+
+        <!-- ✉️ 第二封信：新加的私密信件（點擊展開） -->
+        <details>
+            <summary>🌸關於自卑</summary>
+            
+            <!-- 💡 在下面這裡，用 <p> 標籤一行行加上妳想對他講的新心裡話 -->
+            <p>親愛的小貓寶貝：</p>
+            <p>姐姐理解在亞洲觀念裡面學歷為上的想法，但是寶貝，學歷在我這邊不會成為扣分項或是加分項。對我來說，學歷就是一個讓自己可以得到喜歡工作的敲門磚而已，並不是種智	       商高低、聰明與否的象徵。就算我的小貓沒有本科學歷，單憑你的聲音、人格、思想就會吸引到我，我對你的欣賞始於那些可愛的演繹到那些陪伴中的心疼到現在的溫柔陪伴以	       及耐心安撫，你是第一個要我好好對待自己的人，是第一個要我在乎自己多一些的人。貓很多時候會對前任有醋意，但他們雖然給了我短暫的快樂與陪伴，卻沒能像你一樣給我	       很多安全感還有踏實感。我愛你，我的小貓，想跟你走到人生盡頭。</p>
+            <p>看著我的小貓即使不喜歡也依舊為了畢業努力著，姐姐很欣慰也很佩服，更何況小貓大多時候都考得還不錯，很厲害貓了。同時，不喜歡讀書沒關係，姐姐覺得只要你開心就		       好，不喜歡讀書的話找一個感興趣的工作養自己、活出自己喜歡的樣子、過自己喜歡的生活就很好喔!不一定要為了讀書而讀書，會很痛苦的，我很多同學都是上班之後覺得想要	       有更多理論基礎才回學校讀研。</p>
+            <p>貓，你帶給我的滿滿情緒價值是這輩子最珍貴的寶藏，是我覺得自己給不太好的部分，相比之下我只給一些陪伴就稍顯不足，所以時常覺得自卑，沒能給到你很好的安撫</p>
+            <p>謝謝你總是那麼細心、溫柔地引導我的狀態，讓這段跨越萬里的感情走得這麼踏實和安心。有我可以做得更好的地方要告訴我，姐姐很聽勸的。</p>
+            <p>未來的青雲路上，我也會一直陪在你身邊，不論是平淡還是忙碌，我們都要緊緊牽著彼此，一起走過好多春夏秋冬。</p>
+            <p>期待見面，期待我們真實擁抱的那一天。❤️</p>
+
+            <div class="letter-divider">
+                <span class="divider-flower">✦ ✨ ✦</span>
+            </div>
+
+            <div class="letter-signature" style="text-align: right; color: #666; font-size: 0.95rem; line-height: 1.6;">
+                <p>深愛著你的小狗 筆</p>
+                <p>2026年6月5號</p>
+            </div>
+        </details>
+
     </section>
 
     <section id="recipes">
-        <h2>🍳 我們的食譜</h2>
+        <h2>🍳 屬於我們的三餐四季</h2>
         
         <h3 class="recipe-sub-title" style="color: #8b5a6c;">🍽️ 正餐</h3>
         <div class="card-container">
@@ -572,29 +603,12 @@
             </div>
 
             <div class="travel-card">
-                <div class="card-icon">🍕</div>
-                <h3>在地美食</h3>
-                <ul>
-                    <li>主餐：大餅捲捲圈(炸物，盛興齋)、鍋巴菜(綠豆麵，正味齋或一順成)、八珍豆腐&老豆腐(小貓愛，想吃)、麵茶(鹹味)、煎餅果子、燒餅(伊品齋或劉記)、菱角湯(好胃口)</li>
-                    <li>點心：糕乾(糕乾王)、熟梨糕、海河奶、二姊炸糕(炸麻糬)、海二姊切糕(也是糯米製品)</li>
-                </ul>
-            </div>
-
-            <div class="travel-card">
                 <div class="card-icon">🏨</div>
                 <h3>第一天待辦事項</h3>
                 <p><strong>1：</strong> 辦長期電話卡(天津、北京市區三大電信業)，充最低費率*一年以上(保留門號) </p>
                 <p><strong>2：</strong> 辦銀行卡 </p>
                 <p style="font-size: 0.9rem; color: #888;">有銀行卡才有支付方式！</p>
                 <p style="font-size: 0.9rem; color: #888;">不想讓小貓出太多</p>
-            </div>
-
-            <div class="travel-card">
-                <div class="card-icon">🚄</div>
-                <h3>交通細節</h3>
-                <p><strong>去程：</strong> XX航空 XXXXX班次 飛北京 (預計 09:00 ~ )</p>
-                <p><strong>前往天津：</strong> 高鐵 </p>
-                <p><strong>當地：</strong> 大眾運輸、叫車 </p>
             </div>
 
             <div class="travel-card budget-card">
@@ -604,28 +618,37 @@
                 <a href="https://你的雲端Excel連結" target="_blank" class="excel-btn">📊 查看詳細預算 Excel</a>
             </div>
 
+            <div class="travel-card full-width-card" style="margin-top: 10px;">
+                <div class="card-icon">🍕</div>
+                <h3>在地美食</h3>
+                <ul>
+                    <li>主餐：大餅捲捲圈(炸物，盛興齋)、鍋巴菜(綠豆麵，正味齋或一順成)、八珍豆腐&老豆腐(小貓愛，想吃)、麵茶(鹹味)、煎餅果子、燒餅(伊品齋或劉記)、菱角湯(好胃口)</li>
+                    <li>點心：糕乾(糕乾王)、熟梨糕、海河奶、二姊炸糕(炸麻糬)、海二姊切糕(糯米製品)</li>
+                </ul>
+            </div>
+
+            <div class="travel-card full-width-card" style="margin-top: -20px;">
+                <div class="card-icon">🚄</div>
+                <h3>交通細節</h3>
+               <p><strong>7/13 去程 ✈️：</strong> 中華航空 CI511 | 桃園機場 TPE T2 → 北京首都機場 PEK T3（航班資訊：07:30 ~ 10:55）</p>
+                    <p style="margin-top: 10px; border-top: 1px dashed #e8d3d3; padding-top: 10px;">
+                        <strong>前往天津 🚄：</strong> 一起去小貓生活的地方
+                    </p>
+                    <p style="margin-top: 10px; border-top: 1px dashed #e8d3d3; padding-top: 10px;">
+                        <strong>7/23 回程 ✈️：</strong> 中華航空 CI518 | 北京首都機場 PEK T3 → 桃園機場 TPE T2（航班資訊：20:20 ~ 23:40）</p>
+                </div>
+	    </div>
+
             <div class="travel-card full-width-card">
                 <div class="card-icon">📝</div>
                 <h3>預計行程</h3>
                 <div class="timeline-inline">
-                    <p><strong>Day 1：</strong> 出發 → 抵達北京 → 見面啦~ → 飯店入住 → 辦電信&銀行卡 → </p>
+                    <p><strong>Day 1：</strong> 出發 → 抵達北京 → 見面啦~ → 寄放行李 → 辦電信&銀行卡 → 飯店入住 → </p>
                     <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
-                       <strong>Day 2：</strong>  →  →  →  →
+                       <strong>Day 2 ~ Day n-1：</strong> 吃早飯 → 散步 → 參觀/喝酒/飯店休息 → 下午飯 → 散步 → 休息
                     </p>
                     <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
-                       <strong>Day 3：</strong>  →  →  →  →
-                    </p>
-                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
-                       <strong>Day 4：</strong>  →  →  →  →
-                    </p>
-                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
-                       <strong>Day 5：</strong>  →  →  →  →
-                    </p>
-                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
-                       <strong>Day 6：</strong>  →  →  →  →
-                    </p>
-                    <p style="margin-top: 15px; border-top: 1px dashed #e8d3d3; padding-top: 15px;">
-                       <strong>Day 7：</strong> →  → 飯店退房 →  → 返程
+                       <strong>Day n：</strong> →  → 飯店退房 →  → 返程
                     </p>
                 </div>
             </div>
