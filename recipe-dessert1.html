@@ -2,10 +2,9 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>原味巴斯克蛋糕</title>
+    <title>巴斯克乳酪蛋糕 - 專屬美味</title>
     
     <style>
-        /* 讓網頁點擊目錄跳轉時有平滑滾動的效果 */
         html {
             scroll-behavior: smooth;
         }
@@ -19,7 +18,6 @@
             padding: 40px 20px;
         }
 
-        /* 總容器：設定為 900px 以便容納左右雙欄 */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -30,7 +28,6 @@
             position: relative;
         }
 
-        /* 返回首頁按鈕樣式 */
         .back-btn {
             display: inline-block;
             margin-bottom: 20px;
@@ -50,24 +47,22 @@
             margin-top: 10px;
         }
 
-        /* 雙欄左右排版總佈局 */
+        /* 雙欄佈局 */
         .recipe-layout {
             display: flex;
             gap: 40px;
             margin-top: 30px;
         }
 
-        /* 👈 左側固定索引欄外框 */
         .recipe-sidebar {
             width: 180px;
-            flex-shrink: 0; /* 防止被右邊內容擠扁 */
+            flex-shrink: 0;
         }
 
-        /* 核心黏性滾動魔法 */
         .sticky-menu {
             position: -webkit-sticky;
             position: sticky;
-            top: 40px; /* 捲動到距離視窗上方 40px 時會自動卡住固定 */
+            top: 40px;
             background-color: #fffafb;
             padding: 15px;
             border-radius: 8px;
@@ -84,7 +79,6 @@
             padding-bottom: 5px;
         }
 
-        /* 側邊欄超連結樣式 */
         .sticky-menu a {
             display: block;
             text-decoration: none;
@@ -95,17 +89,15 @@
         }
         .sticky-menu a:hover {
             color: #8b5a6c;
-            padding-left: 5px; /* 滑鼠移上去時往右稍微彈跳 */
+            padding-left: 5px;
             font-weight: bold;
         }
 
-        /* 👉 右側主要內容區 */
         .recipe-main-content {
             flex-grow: 1;
             min-width: 0;
         }
 
-        /* 食譜大圖樣式 */
         .recipe-img {
             width: 100%;
             height: 320px;
@@ -114,23 +106,62 @@
             margin-bottom: 20px;
         }
 
-        /* 各大區塊標題樣式 */
+        /* 🌟 口味切換按鈕區樣式 */
+        .flavor-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e8d3d3;
+            padding-bottom: 10px;
+        }
+        .flavor-btn {
+            background-color: #fffafb;
+            border: 1px solid #e8d3d3;
+            color: #666;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .flavor-btn:hover {
+            background-color: #fff0f2;
+            color: #8b5a6c;
+        }
+        /* 被選中的口味高亮亮起 */
+        .flavor-btn.active {
+            background-color: #8b5a6c;
+            color: white !important;
+            border-color: #8b5a6c;
+            box-shadow: 0 2px 8px rgba(139,90,108,0.3);
+        }
+
+        /* 預設把非主口味的資料盒藏起來 */
+        .flavor-content {
+            display: none;
+        }
+        .flavor-content.active {
+            display: block; /* 只有被選中的會顯示出來 */
+        }
+
         .section-title {
             color: #a06e78;
             border-left: 4px solid #a06e78;
             padding-left: 10px;
             margin-top: 35px;
             margin-bottom: 15px;
+            text-align: left;
         }
 
         ul, ol {
             padding-left: 20px;
+            text-align: left;
         }
         li {
             margin-bottom: 10px;
         }
 
-        /* 📝 料理反饋與心得總外框 */
         .feedback-box {
             background-color: #fffafb;
             border: 1px dashed #e8d3d3;
@@ -139,25 +170,21 @@
             margin-top: 20px;
             text-align: left;
         }
-
         .feedback-item {
             margin-bottom: 15px;
         }
         .feedback-item:last-child {
             margin-bottom: 0;
         }
-
         .feedback-label {
             font-weight: bold;
             color: #8b5a6c;
             display: inline-block;
             margin-bottom: 5px;
         }
-
         .feedback-value {
             color: #555;
         }
-
         .feedback-text {
             margin: 0;
             background: white;
@@ -168,7 +195,6 @@
             color: #555;
             line-height: 1.6;
         }
-
         .feedback-list {
             margin: 0;
             padding-left: 20px;
@@ -176,7 +202,6 @@
             color: #555;
         }
 
-        /* 🔠 繁簡切換浮動按鈕樣式 */
         #translate-btn {
             position: fixed;
             bottom: 30px;
@@ -204,11 +229,12 @@
     <div class="container">
         <a href="index.html" class="back-btn">⬅️ 返回首頁</a>
 
-        <h1>原味巴斯克蛋糕</h1>
-        <p style="color: #888; font-style: italic;">「料理備註」</p>
+        <h1 id="main-recipe-title">經典巴斯克乳酪蛋糕</h1>
+        <p style="color: #888; font-style: italic;">「手作烘焙的情感溫度，為妳量身打造的專屬微甜」</p>
 
         <div class="recipe-layout">
             
+            <!-- 👈 左側固定索引欄 -->
             <aside class="recipe-sidebar">
                 <div class="sticky-menu">
                     <p class="menu-title">🍳 快速索引</p>
@@ -218,27 +244,104 @@
                 </div>
             </aside>
 
+            <!-- 👉 右側主要內容區 -->
             <main class="recipe-main-content">
                 
-                <img src="food6.jpg" alt="主餐照片" class="recipe-img">
+                <!-- 🌟 口味智慧切換標籤列 -->
+                <div class="flavor-tabs">
+                    <button class="flavor-btn active" onclick="switchFlavor('original')">經典原味</button>
+                    <button class="flavor-btn" onclick="switchFlavor('matcha')">靜岡抹茶</button>
+                    <button class="flavor-btn" onclick="switchFlavor('chocolate')">濃郁巧克力</button>
+		    <button class="flavor-btn" onclick="switchFlavor('lowcal')">🌱 低卡輕盈巧克力版</button>
+                </div>
+                
+		<img src="food6.jpg" alt="美味蛋糕照片" class="recipe-img" id="section-ingredients">
 
-                <h3 class="section-title" id="section-ingredients">🛒 準備食材</h3>
-                <ul>
-                    <li> —— </li>
-                    <li> —— </li>
-                    <li> —— </li>
-                    <li> —— </li>
-                    <li> —— </li>
-                </ul>
+                <!-- ＝-＝-＝-＝-＝ 🍰 1. 經典原味資料盒 ＝-＝-＝-＝-＝ -->
+                <div id="flavor-original" class="flavor-content active">
+		<h3 class="section-title">🛒 準備食材（原味）</h3>
+                    <ul>
+                        <li>奶油乳酪（Cream Cheese） —— 250g</li>
+                        <li>細砂糖 —— 60g</li>
+                        <li>全蛋 —— 2顆</li>
+                        <li>鮮奶油 —— 150ml</li>
+                        <li>低筋麵粉 —— 10g</li>
+                    </ul>
 
-                <h3 class="section-title" id="section-steps">👩‍🍳 料理步驟</h3>
-                <ol>
-                    <li>1. </li>
-                    <li>2. </li>
-                    <li>3. </li>
-                    <li>4. </li>
-                </ol>
+                    <h3 class="section-title" id="section-steps">👩‍🍳 料理步驟（原味）</h3>
+                    <ol>
+                        <li>奶油乳酪放置室溫軟化後，加入細砂糖用打蛋器攪打至滑順無顆粒。</li>
+                        <li>將全蛋分兩次加入，每一次都要徹底攪拌均勻再加下一顆。</li>
+                        <li>緩慢倒入鮮奶油攪拌均勻，最後篩入低筋麵粉，輕輕拌勻成細緻麵糊。</li>
+                        <li>模具鋪上烘焙紙，倒入麵糊，烤箱預熱 220°C 烘烤 20 至 25 分鐘至表面呈現焦黑琥珀色即可。</li>
+                    </ol>
+                </div>
 
+                <!-- ＝-＝-＝-＝-＝ 🍵 2. 靜岡抹茶資料盒 ＝-＝-＝-＝-＝ -->
+                <div id="flavor-matcha" class="flavor-content">
+                    <h3 class="section-title">🛒 準備食材（抹茶口味）</h3>
+                    <ul>
+                        <li>奶油乳酪（Cream Cheese） —— 250g</li>
+                        <li>細砂糖 —— 65g（抹茶帶微苦，糖量稍微調整）</li>
+                        <li>全蛋 —— 2顆</li>
+                        <li>鮮奶油 —— 150ml</li>
+                        <li>靜岡抹茶粉 —— 12g</li>
+                        <li>低筋麵粉 —— 8g</li>
+                    </ul>
+
+                    <h3 class="section-title">👩‍🍳 料理步驟（抹茶口味）</h3>
+                    <ol>
+                        <li>奶油乳酪放置室溫軟化，與細砂糖一同攪打至細緻羽毛狀。</li>
+                        <li>分次加入雞蛋拌勻。將抹茶粉與低筋麵粉混合均勻。</li>
+                        <li>鮮奶油稍微加熱，將抹茶粉與麵粉篩入鮮奶油中完全攪勻、攪散，防止抹茶結塊。</li>
+                        <li>將抹茶鮮奶油液倒入乳酪糊中徹底拌勻。過篩一次會更滑順。倒入模具以 220°C 烤 22 分鐘。</li>
+                    </ol>
+                </div>
+
+                <!-- ＝-＝-＝-＝-＝ 🍫 3. 濃郁巧克力資料盒 ＝-＝-＝-＝-＝ -->
+                <div id="flavor-chocolate" class="flavor-content">
+                    <h3 class="section-title">🛒 準備食材（巧克力口味）</h3>
+                    <ul>
+                        <li>奶油乳酪（Cream Cheese） —— 250g</li>
+                        <li>細砂糖 —— 55g</li>
+                        <li>調溫黑巧克力（54% 或 70%） —— 80g</li>
+                        <li>全蛋 —— 2顆</li>
+                        <li>鮮奶油 —— 140ml</li>
+                        <li>可可粉 —— 10g</li>
+                        <li>低筋麵粉 —— 5g</li>
+                    </ul>
+
+                    <h3 class="section-title">👩‍🍳 料理步驟（巧克力口味）</h3>
+                    <ol>
+                        <li>黑巧克力與鲜奶油一同隔水加熱至完全融化，攪拌成發亮的巧克力甘納許，放涼備用。</li>
+                        <li>室溫乳酪與細砂糖打軟，分次加入雞蛋拌勻。</li>
+                        <li>將放涼的巧克力液倒入乳酪糊中混合，接著篩入可可粉與低筋麵粉拌勻。</li>
+                        <li>倒入烤模，以 210°C 烘烤 23 分鐘，出爐後冷藏一夜，口感宛如絲絨生巧克力。</li>
+                    </ol>
+                </div>
+
+		 <div id="flavor-lowcal" class="flavor-content">
+                    <h3 class="section-title">🛒 準備食材（🌱 低卡輕盈巧克力版）</h3>
+                    <ul>
+                        <li>夸克 —— 150g</li>
+                        <li>牛奶 —— 20g </li>
+                        <li>赤藻糖醇（代糖） —— 20g（0熱量健康代糖）</li>
+                        <li>蛋黃 —— 1顆</li>
+                        <li>澱粉 —— 5g</li>
+                        <li>可可粉 —— 10g</li>
+                    </ul>
+
+                    <h3 class="section-title">👩‍🍳 料理步驟（🌱 低卡輕盈巧克力版）</h3>
+                    <ol>
+                        <li>夸克、糖、乾粉、蛋黃混合攪拌</li>
+                        <li>加入適量牛奶調整稠度</li>
+                        <li>倒入鋪好烘焙紙的烤模，180°C 烘烤 20 分鐘 ( 18 分鐘 流心）</li>
+                        <li>出爐後冷藏4~6小時</li>
+                    </ol>
+                </div>
+
+
+                <!-- ＝-＝-＝-＝-＝ 📝 共同料理反饋區 ＝-＝-＝-＝-＝ -->
                 <h3 class="section-title" id="section-feedback">📝 料理反饋與心得</h3>
                 <div class="feedback-box">
                     <div class="feedback-item">
@@ -249,68 +352,128 @@
                     <div class="feedback-item">
                         <span class="feedback-label">🥰 口味心得：</span>
                         <p class="feedback-text">
-                            小貓說給這道菜打 95 分！
+                            小貓說給這道菜打 95 分！原味的焦香濃郁，冰過一整晚之後中心微微爆漿，口感超級綿密！下次準備挑戰抹茶口味給他吃！
                         </p>
                     </div>
 
                     <div class="feedback-item">
                         <span class="feedback-label">🛠️ 改進方式：</span>
                         <ul class="feedback-list">
-                            <li>1. </li>
-                            <li>2. </li>
+                            <li>烘焙紙折痕可以再稍微壓平整一點，烤出來的蛋糕邊緣會更漂亮。</li>
+                            <li>出爐後一定要按耐住性子冷藏至少 6 小時以上，乳酪的香氣才會完全釋放。</li>
                         </ul>
                     </div>
                 </div>
 
             </main>
+        </div> 
+    </div>
 
-        </div> </div>
-
+    <!-- 繁簡切換按鈕 -->
     <button id="translate-btn" onclick="toggleLanguage()">简体</button>
 
+    <!-- 🔮 智慧口味切換控制腳本 -->
     <script>
-        const traditional = "繁體網頁照片音樂食譜未來規劃旅遊景點美食住宿交通預算程點擊連結個板塊幸福推薦義大利麵時光微甜心蛋糕法式焦糖烤布蕾為妳量身打造專屬圖每項吧熱門區欄排列顯示返回首頁歡迎戀愛愛妳浪漫驚喜美味細心陪伴準備食材料理步驟料理反饋心得製作日期口味改進方式快速索引";
-        const simplified  = "繁体网页照片音乐食谱未来规划旅游景点美食住宿交通预算程点击链接个板块幸福推荐义大利面时光微甜心蛋糕法式焦糖烤布蕾为妳量身打造专属图每项吧热门区栏排列显示返回首页欢迎恋爱爱妳浪漫惊喜美味细心陪伴准备食材料理步骤料理反馈心得制作日期口味改进方式快速索引";
+        function switchFlavor(flavorId) {
+            // 1. 讓所有按鈕熄滅
+            document.querySelectorAll('.flavor-btn').forEach(btn => btn.classList.remove('active'));
+            // 2. 讓所有的食譜內容盒藏起來
+            document.querySelectorAll('.flavor-content').forEach(content => content.classList.remove('active'));
+            
+            // 3. 點亮當前被點擊的按鈕與對應口味的內容
+            event.currentTarget.classList.add('active');
+            document.getElementById('flavor-' + flavorId).classList.add('active');
+            
+            // 🌟 核心魔法：無論點擊哪個口味，都強制讓網頁視角「平滑滾動」回到食材準備區的標題！
+            const targetSection = document.getElementById('section-ingredients');
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // 4. 切換口味時，重新刷新一次翻譯記憶庫
+            if (typeof backupOriginalTraditional === 'function') {
+                backupOriginalTraditional();
+                if (currentLang === 'zh-CN') {
+                    runTranslateToSimple();
+                }
+            }
+        }
+    </script>
 
+    <!-- 🧠 雙層詞彙級精準對照翻譯官（附帶繁體完美保護罩） -->
+    <script>
+        const phraseMap = {
+            "未來規劃藍圖": "未来规划蓝图", "美味食譜": "美味食谱", "料理步驟": "料理步骤", 
+            "料理反饋": "料理反馈", "製作日期": "制作日期", "口味改進方式": "口味改进方式", 
+            "快速索引": "快速索引", "準備食材": "准备食材", "原味巴斯克蛋糕": "原味巴斯克蛋糕",
+            "低筋麵粉": "低筋面粉", "烘烤": "烘烤", "烘焙紙": "烘焙纸"
+        };
+
+        const traditional = "繁體網頁照片音樂食譜未來規劃旅遊景點美食住宿交通預算程點擊連結個板塊幸福推薦義大利麵時光微甜心蛋糕法式焦糖烤布蕾為妳量身打造專屬圖每項吧熱門區欄排列顯示返回首頁歡迎戀愛愛妳浪漫驚喜美味細心陪伴口味方式奶油乳酪細砂糖全蛋顆鮮奶油拌勻分次加入攪拌烘烤預熱分琥珀色微苦加熱篩入甘納許放涼混合生冰整晚邊緣釋放點擊展開特別";
+        const simplified  = "繁体网页照片音乐食谱未来规划旅游景点美食住宿交通预算程点击链接个板块幸福推荐义大利面时光微甜心蛋糕法式焦糖烤布蕾为妳量身打造专属图每项吧热门区栏排列显示返回首页欢迎恋爱爱妳浪漫惊喜美味细心陪伴口味方式奶油乳酪细砂糖全蛋颗鲜奶油拌匀分次加入搅拌烘烤预热分琥珀色微苦加热筛入甘纳许放凉混合生冰整晚边缘释放点击展开特别";
+
+        let traditionalMemory = [];
         let currentLang = localStorage.getItem('lang') || 'zh-TW';
 
         window.addEventListener('DOMContentLoaded', () => {
+            backupOriginalTraditional();
             if (currentLang === 'zh-CN') {
-                runTranslate(traditional, simplified);
+                runTranslateToSimple();
                 document.getElementById('translate-btn').innerText = '繁體';
             }
         });
 
+        function backupOriginalTraditional() {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            traditionalMemory = [];
+            while (node = walker.nextNode()) {
+                if (node.parentElement.id === 'translate-btn' || node.parentElement.tagName === 'SCRIPT' || node.parentElement.tagName === 'STYLE') continue;
+                traditionalMemory.push({
+                    node: node,
+                    originalText: node.nodeValue
+                });
+            }
+        }
+
         function toggleLanguage() {
             const btn = document.getElementById('translate-btn');
             if (currentLang === 'zh-TW') {
-                runTranslate(traditional, simplified);
+                runTranslateToSimple();
                 btn.innerText = '繁體';
                 currentLang = 'zh-CN';
             } else {
-                runTranslate(simplified, traditional);
+                restoreToPerfectTraditional();
                 btn.innerText = '简体';
                 currentLang = 'zh-TW';
             }
             localStorage.setItem('lang', currentLang);
         }
 
-        function runTranslate(fromStr, toStr) {
-            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-            let node;
-            while (node = walker.nextNode()) {
-                if (node.parentElement.id === 'translate-btn') continue;
-                let text = node.nodeValue;
-                let newText = '';
+        function runTranslateToSimple() {
+            traditionalMemory.forEach(item => {
+                let text = item.originalText;
+                for (let phrase in phraseMap) {
+                    if (text.includes(phrase)) {
+                        text = text.replaceAll(phrase, phraseMap[phrase]);
+                    }
+                }
+                let finalText = '';
                 for (let i = 0; i < text.length; i++) {
                     let char = text.charAt(i);
-                    let index = fromStr.indexOf(char);
-                    newText += (index !== -1) ? toStr.charAt(index) : char;
+                    if (char === '妳') { finalText += '妳'; continue; }
+                    let index = traditional.indexOf(char);
+                    finalText += (index !== -1) ? simplified.charAt(index) : char;
                 }
-                node.nodeValue = newText;
-            }
+                item.node.nodeValue = finalText;
+            });
+        }
+
+        function restoreToPerfectTraditional() {
+            traditionalMemory.forEach(item => {
+                item.node.nodeValue = item.originalText;
+            });
         }
     </script>
-
 </body>
 </html>
