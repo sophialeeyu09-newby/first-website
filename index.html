@@ -526,7 +526,146 @@
         </div>
     </section>
 
-    <section id="plans">
+<section id="scents" style="margin-top: 40px;">
+        <h2>✨ 我們的香氣記憶</h2>
+        
+        <div class="travel-card full-width-card" style="background: #fffcfc; padding: 25px; border-radius: 12px; border-left: 5px solid #e1b3b3;">
+            <div class="card-icon" style="font-size: 1.8rem; margin-bottom: 10px;">✨ 🪵 🌸</div>
+            <h3 style="color: #8b5a6c; margin-top: 5px;">氣味博物館</h3>            
+            <div class="flavor-tabs" style="display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid #fcdcdc; padding-bottom: 10px; justify-content: 		    center;">
+                <button class="flavor-btn active" id="btn-scent-shared" onclick="switchScentCabinet('shared')">❤️ 我們的命定香</button>
+                <button class="flavor-btn" id="btn-scent-her" onclick="switchScentCabinet('her')">🌸 卿之百寶箱</button>
+                <button class="flavor-btn" id="btn-scent-his" onclick="switchScentCabinet('his')">🪵 貓的收藏櫃</button>
+            </div>
+
+            <div id="cabinet-shared" class="flavor-content active">
+                <div style="display: flex; gap: 25px; flex-wrap: wrap; text-align: left;">
+                    <div style="flex: 1; min-width: 280px; background: white; padding: 18px; border-radius: 8px; border: 1px solid #f5e6e6; box-shadow: 0 2px 8px 			    rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h4 style="color: #a06e78; margin-top: 0; font-size: 1.1rem; border-bottom: 1px solid #fff0f2; padding-bottom: 8px; margin-bottom: 12px;">🌸 			    小狗的氣味</h4>
+                            <p style="margin: 0 0 8px 0; font-weight: bold; color: #4a4a4a; font-size: 1.05rem;">Diptyque L'Artisan <span style="background: #fff0f2; 				    color: #8b5a6c; font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; margin-left: 5px; font-weight: bold;">輕盈木質調</span></p>
+                            <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px 0; line-height: 1.5; background: #fafafa; padding: 8px 12px; border-radius: 6px;">
+                                <span style="color: #a06e78; font-weight: bold;">前調：</span> <br>
+                                <span style="color: #a06e78; font-weight: bold;">中調：</span> <br>
+                                <span style="color: #a06e78; font-weight: bold;">後調：</span>
+                            </p>
+                        </div>
+                        <div style="background: #fffafb; padding: 12px 15px; border-radius: 8px; border-left: 3px solid #e1b3b3; margin-top: 10px;">
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: #555; line-height: 1.6;"><strong style="color: #8b5a6c;">🐱 小貓評價：</strong>這裡填			    入小貓對這支香水的想法...</p>
+                            <p style="margin: 6px 0 0 0; font-size: 0.95rem; color: #555; line-height: 1.6; border-top: 1px dashed #fcdcdc; padding-top: 6px;"><strong 				    style="color: #a06e78;">🐶 小狗評價：</strong>這裡填入妳的心得紀錄...</p>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 280px; background: white; padding: 18px; border-radius: 8px; border: 1px solid #f5e6e6; box-shadow: 0 2px 8px 			    rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h4 style="color: #a06e78; margin-top: 0; font-size: 1.1rem; border-bottom: 1px solid #fff0f2; padding-bottom: 8px; margin-bottom: 12px;">🪵 			    小貓的氣味</h4>
+                            <p style="margin: 0 0 8px 0; font-weight: bold; color: #4a4a4a; font-size: 1.05rem;">Diptyque L'Artisan <span style="background: #fff0f2; 				    color: #8b5a6c; font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; margin-left: 5px; font-weight: bold;">清冷木質調</span></p>
+                            <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px 0; line-height: 1.5; background: #fafafa; padding: 8px 12px; border-radius: 6px;">
+                                <span style="color: #a06e78; font-weight: bold;">前調：</span> <br>
+                                <span style="color: #a06e78; font-weight: bold;">中調：</span> <br>
+                                <span style="color: #a06e78; font-weight: bold;">後調：</span> 
+                            </p>
+                        </div>
+                        <div style="background: #fffafb; padding: 12px 15px; border-radius: 8px; border-left: 3px solid #e1b3b3; margin-top: 10px;">
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: #555; line-height: 1.6;"><strong style="color: #8b5a6c;">🐱 小貓評價：</strong>他自己			    穿這支香水的感覺...</p>
+                            <p style="margin: 6px 0 0 0; font-size: 0.95rem; color: #555; line-height: 1.6; border-top: 1px dashed #fcdcdc; padding-top: 6px;"><strong 				    style="color: #a06e78;">🐶 小狗評價：</strong>那是屬於你順毛時最讓我心定的平靜味道。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cabinet-her" class="flavor-content">
+                <div style="display: flex; gap: 25px; flex-wrap: wrap; text-align: left;">
+                    <div style="flex: 1; min-width: 250px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #f5e6e6;">
+                        <h4 style="color: #a06e78; margin: 0 0 8px 0;">Le Labo 玫瑰 31</h4>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">前調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">中調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">後調：</span> </p>
+                        <p style="font-size: 0.9rem; color: #666; background: #fffafb; padding: 8px; border-radius: 6px; margin: 0;">這是我很喜歡的一支木質玫瑰，帶著點個性的溫暖感。</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #f5e6e6;">
+                        <h4 style="color: #a06e78; margin: 0 0 8px 0;">Diptyque 肌膚之華</h4>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">前調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">中調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">後調：</span> </p>
+                        <p style="font-size: 0.9rem; color: #666; background: #fffafb; padding: 8px; border-radius: 6px; margin: 0;">非常溫柔乾淨的偽體香，軟綿綿的特別舒服。</p>
+                    </div>
+                    </div>
+            </div>
+
+            <div id="cabinet-his" class="flavor-content">
+                <div style="display: flex; gap: 25px; flex-wrap: wrap; text-align: left;">
+                    <div style="flex: 1; min-width: 250px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #f5e6e6;">
+                        <h4 style="color: #8b7355; margin: 0 0 8px 0;">香水名字待填 1</h4>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">前調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">中調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">後調：</span> </p>
+                        <p style="font-size: 0.9rem; color: #666; background: #fffbf7; padding: 8px; border-radius: 6px; margin: 0;">這裡可以填入小貓擁有的其他香水和妳對那支香的主觀心動想法喔！</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; background: white; padding: 15px; border-radius: 8px; border: 1px solid #f5e6e6;">
+                        <h4 style="color: #8b7355; margin: 0 0 8px 0;">香水名字待填 2</h4>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">前調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">中調：</span> </p>
+                        <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">後調：</span> </p>
+                        <p style="font-size: 0.9rem; color: #666; background: #fffbf7; padding: 8px; border-radius: 6px; margin: 0;">等見面時偷偷去聞他的香水櫃，再來把這裡填滿！</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin: 25px 0 0 0; text-align: center; color: #a06e78; font-size: 0.9rem; font-weight: bold; letter-spacing: 1px;">
+                ✨ 未來一起去尋找屬於我們的其他味道 ✨
+            </p>
+        </div>
+    </section>
+
+<!-- 🔮 專屬香水櫃切換控制指令腳本：純行內無依賴版，100% 點擊必成功 -->
+    <script>
+        function switchScentCabinet(cabinetId) {
+            // 1. 定義三個抽屜的 ID 陣列
+            const cabinets = ['shared', 'her', 'his'];
+            
+            // 2. 用迴圈把所有抽屜藏起來，並讓所有按鈕熄滅
+            cabinets.forEach(id => {
+                const cabinet = document.getElementById('cabinet-' + id);
+                const btn = document.getElementById('btn-scent-' + id);
+                
+                if (cabinet) {
+                    cabinet.style.display = 'none'; // 狠狠藏起來
+                }
+                if (btn) {
+                    // 還原成普通按鈕樣式（灰字、白底粉邊）
+                    btn.style.backgroundColor = '#fffafb';
+                    btn.style.color = '#666';
+                    btn.style.borderColor = '#e8d3d3';
+                    btn.style.boxShadow = 'none';
+                }
+            });
+            
+            // 3. 點亮當前被點擊的那個抽屜與按鈕
+            const targetCabinet = document.getElementById('cabinet-' + cabinetId);
+            const targetBtn = document.getElementById('btn-scent-' + cabinetId);
+            
+            if (targetCabinet) {
+                targetCabinet.style.display = 'block'; // 秀出被選中的香水
+            }
+            if (targetBtn) {
+                // 讓他穿上跟妳網頁最搭的豆沙色高亮外衣！
+                targetBtn.style.backgroundColor = '#8b5a6c';
+                targetBtn.style.color = 'white';
+                targetBtn.style.borderColor = '#8b5a6c';
+                targetBtn.style.boxShadow = '0 2px 8px rgba(139,90,108,0.3)';
+            }
+            
+            // 4. 切換時，全自動幫底層的繁簡翻譯官刷新一次畫面記憶
+            if (typeof backupOriginalTraditional === 'function') {
+                backupOriginalTraditional();
+                if (currentLang === 'zh-CN') {
+                    runTranslateToSimple();
+                }
+            }
+        }
+    </script>
+
+<section id="plans">
         <h2>📅 未來規劃藍圖</h2>
         
         <details class="plan-container" style="background: #fff0f2; padding: 20px; border-radius: 12px; border-left: 5px solid #d49a9a; margin-bottom: 25px; cursor: pointer;">
